@@ -1,7 +1,8 @@
 import express from 'express';
 import ItemsRoutes from './routes/itemsRoutes.js';
-import swaggerUi from 'swagger-ui-express';
-import swaggerJsdoc from 'swagger-jsdoc'; 
+import swaggerUi from 'swagger-ui-express'; 
+import swaggerDocument from '../swagger.json' assert { type: "json" };
+
 
 const app = express();
 const port = 3000;
@@ -16,14 +17,11 @@ const options = {
     },
     servers: [{ url: 'http://localhost:3000' }]
   },
-  apis: ['./routes/itemsRoutes.js'],
+  apis: ['./src/services/itemsService.js'],
 };
 
-const specs = swaggerJsdoc(options);
-console.log(specs)
-
 app.use(express.json());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/items', new ItemsRoutes().router);
 
 
