@@ -41,6 +41,12 @@ A RESTful API using Express.js with endpoints to perform CRUD operations on a li
    npm install
    ```
 
+3. **Start:**
+
+   ```bash
+   npm start
+   ```   
+
    The API will be accessible at `http://localhost:3000`.
 
 ## Endpoints
